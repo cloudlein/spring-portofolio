@@ -32,6 +32,51 @@ A production-ready Spring Boot web application designed for managing curriculum 
 
 ---
 
+## Project Structure
+
+The project directory is structured as follows, adhering to Spring Boot best practices:
+
+```text
+portofolio/
+├── .agents/                  # Agent customizations and development skills
+├── src/
+│   ├── main/
+│   │   ├── java/com/my/portofolio/
+│   │   │   ├── config/       # Security, DB, Redis, and OpenAPI configuration classes
+│   │   │   ├── controller/   # REST Controllers (API endpoints)
+│   │   │   ├── dto/          # Data Transfer Objects (Requests & Responses)
+│   │   │   ├── exception/    # Custom exceptions & global exception handlers
+│   │   │   ├── mapper/       # MapStruct mappers (Entity <-> DTO conversions)
+│   │   │   ├── model/        # JPA Entities (Database models)
+│   │   │   │   └── enums/    # Java Enums (e.g., Role, Status)
+│   │   │   ├── repository/   # Spring Data JPA repositories
+│   │   │   ├── service/      # Business logic services
+│   │   │   └── PortofolioApplication.java  # Main application entry point
+│   │   └── resources/
+│   │       ├── db/migration/ # Flyway SQL schema migration scripts
+│   │       ├── static/       # Static assets (browser-accessible)
+│   │       │   ├── css/      # Custom stylesheets
+│   │       │   ├── js/       # Custom scripts
+│   │       │   └── images/   # Images, logos, icons
+│   │       ├── templates/    # Thymeleaf HTML Templates
+│   │       │   ├── layout/   # Master layouts & fragments (header, footer)
+│   │       │   ├── auth/     # Authentication pages (login, register)
+│   │       │   ├── cv/       # CV/profile management pages
+│   │       │   ├── portfolio/# Portfolio items management pages
+│   │       │   ├── error/    # Custom HTTP error pages (403, 404, 500)
+│   │       │   └── index.html# Dashboard/Home page
+│   │       ├── application.yaml       # Base configuration
+│   │       ├── application-dev.yaml   # Local/dev profile configuration
+│   │       └── application-prod.yaml  # Production profile configuration
+│   └── test/                 # Unit and integration tests (using Testcontainers)
+├── Dockerfile                # Multi-stage production Docker build specification
+├── build.gradle              # Gradle dependencies and build configuration
+├── compose.yaml              # Local development services (Postgres, Redis)
+└── settings.gradle           # Gradle project settings
+```
+
+---
+
 ## Configuration & Execution
 
 ### 1. Environment Variables Setup
