@@ -18,7 +18,7 @@ spring:
       key-prefix: "portofolio:cache:"
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT}
   error:
     include-message: never
     include-binding-errors: never
@@ -31,3 +31,12 @@ springdoc:
     path: /swagger-ui.html
     operations-sorter: alpha
     tags-sorter: alpha
+
+# JWT Security Configurations
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET}
+      expiration: ${JWT_EXPIRATION_MS}
+      refresh-token:
+        expiration: ${JWT_REFRESH_EXPIRATION_MS}
