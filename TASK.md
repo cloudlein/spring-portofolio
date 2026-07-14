@@ -13,9 +13,9 @@ Track the progress of your application development phases below.
 ---
 
 ## Phase 2: Security & Authentication
-- [ ] Implement User Registration & Authentication (Session-based with BCrypt)
+- [ ] Implement User Registration & Authentication (JWT-based with BCrypt)
 - [ ] Configure Spring Security Rules (`SecurityConfig` classes)
-- [ ] Implement Session validation filter & exceptions handling for unauthenticated requests
+- [ ] Implement JWT validation filter & exceptions handling for unauthenticated requests
 - [ ] Verify security configurations using integration tests
 
 ---
