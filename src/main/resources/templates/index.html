@@ -1,10 +1,345 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Portfolio Portal</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #090a0f;
+            --color-surface: #12131a;
+            --color-border: #222533;
+            --color-border-hover: #33384c;
+            --color-border-focus: #6366f1;
+            --color-text-main: #f8fafc;
+            --color-text-muted: #94a3b8;
+            --color-primary: #6366f1;
+            --color-primary-hover: #4f46e5;
+            --color-primary-focus: rgba(99, 102, 241, 0.25);
+            
+            --color-gradient-start: #6366f1;
+            --color-gradient-end: #3b82f6;
+            
+            --font-family: 'Inter', sans-serif;
+            --transition-speed: 0.2s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navbar */
+        .navbar {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--color-text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-pill {
+            background-color: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        .btn-link {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        .btn-link:hover {
+            color: var(--color-text-main);
+        }
+
+        .btn-logout {
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            background: rgba(248, 113, 113, 0.05);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-logout:hover {
+            background: rgba(248, 113, 113, 0.1);
+            border-color: rgba(248, 113, 113, 0.4);
+        }
+
+        /* Container & Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        /* Hero Banner Card */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+            border-radius: 16px;
+            padding: 48px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .welcome-banner::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .welcome-banner h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .welcome-banner p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        /* Grid section */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.2px;
+            color: var(--color-text-main);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+        }
+
+        .card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header-info {
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        .card-action {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-card {
+            background-color: var(--color-border);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-main);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+        }
+
+        .card:hover .btn-card {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-card:hover {
+            background-color: var(--color-primary-hover) !important;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--color-border);
+            padding: 24px;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 13px;
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Dashboard</h1>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">Portfolio Portal</a>
+        <div class="navbar-actions">
+            <span class="user-pill" th:text="${user.email}">user@domain.com</span>
+            <a href="/profile" class="btn-link">Edit Profile</a>
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <h2>Welcome to your Dashboard</h2>
+            <p>Manage your CV sections, education history, work experiences, skills, and portfolio projects from a central dashboard.</p>
+        </div>
+
+        <h3 class="section-title">Management Modules</h3>
+        
+        <!-- Grid -->
+        <div class="grid">
+            
+            <!-- User Account Card -->
+            <div class="card">
+                <div class="card-header-info">
+                    <h4 class="card-title">User Account</h4>
+                    <p class="card-desc">Manage your authentication details. Your current role is <strong th:text="${user.roleUser}">USER</strong>.</p>
+                </div>
+                <div class="card-action">
+                    <a href="/profile" class="btn-card">Manage Profile</a>
+                </div>
+            </div>
+
+            <!-- CV Profile Card -->
+            <div class="card">
+                <div class="card-header-info">
+                    <h4 class="card-title">CV Profile</h4>
+                    <p class="card-desc">Set your full name, title, summary statement, contact info, and upload a profile photo.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-card">Manage CV</a>
+                </div>
+            </div>
+
+            <!-- Work Experience Card -->
+            <div class="card">
+                <div class="card-header-info">
+                    <h4 class="card-title">Work Experience</h4>
+                    <p class="card-desc">Log your professional experiences, job titles, companies, dates, and key accomplishments.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-card">Manage Work</a>
+                </div>
+            </div>
+
+            <!-- Education Card -->
+            <div class="card">
+                <div class="card-header-info">
+                    <h4 class="card-title">Education History</h4>
+                    <p class="card-desc">Track your academic achievements, degrees, schools, graduation dates, and GPA.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-card">Manage Education</a>
+                </div>
+            </div>
+
+            <!-- Skills & Projects Card -->
+            <div class="card">
+                <div class="card-header-info">
+                    <h4 class="card-title">Skills & Projects</h4>
+                    <p class="card-desc">Showcase your technical skills, categories, level of expertise, and showcase portfolio projects.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-card">Manage Skills</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2026 Portfolio Portal. All rights reserved.
+    </footer>
+
 </body>
 </html>

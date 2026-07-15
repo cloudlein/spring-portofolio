@@ -13,26 +13,26 @@ Track the progress of your application development phases below.
 ---
 
 ## Phase 2: Security & Authentication
-- [ ] Implement User Registration & Authentication (JWT-based with BCrypt)
-- [ ] Configure Spring Security Rules (`SecurityConfig` classes)
-- [ ] Implement JWT validation filter & exceptions handling for unauthenticated requests
+- [x] Implement User Registration & Authentication (JWT-based with BCrypt via API)
+- [x] Configure Spring Security Rules (`SecurityConfig` classes to support API auth and Cookie MVC pages)
+- [x] Implement JWT validation filter (extracting token from cookie) & exception handling
 - [ ] Verify security configurations using integration tests
 
 ---
 
 ## Phase 3: CV & Portfolio Domain Implementation
 - [ ] **User Domain**:
-  - [ ] Entities, DTOs, and MapStruct Mapper
-  - [ ] Repository, UserService, and Profile endpoints
+  - [x] Entities, DTOs, and MapStruct Mapper
+  - [x] Repository, UserService, and Profile views/controllers
 - [ ] **CV Profile Domain**:
-  - [ ] Entities, DTOs, and Mappers
-  - [ ] CRUD endpoints for CV Profile (personal details, summary, image upload)
+  - [/] Entities, DTOs, and Mappers (Entity `CvProfile` implemented, DTOs & Mappers pending)
+  - [ ] MVC Controllers and Thymeleaf Views for CV Profile (personal details, summary, image upload via cookie-authenticated forms)
 - [ ] **Work Experience Domain**:
-  - [ ] CRUD endpoints & associations
+  - [/] Entities (implemented in `WorkExperience`), MVC Controllers and Views for Work Experience CRUD & associations
 - [ ] **Education Domain**:
-  - [ ] CRUD endpoints & associations
+  - [/] Entities (implemented in `Education`), MVC Controllers and Views for Education CRUD & associations
 - [ ] **Skills & Projects Domains**:
-  - [ ] CRUD endpoints & associations
+  - [/] Entities (implemented in `Skill` & `Project`), MVC Controllers and Views for Skills & Projects CRUD & associations
 
 ---
 
@@ -41,14 +41,14 @@ Track the progress of your application development phases below.
   - [ ] Configure HttpClient or SDK to communicate with Supabase storage buckets
   - [ ] Implement file upload service for profile photos/portfolios
 - [ ] **Caching Layer**:
-  - [ ] Configure Spring Cache & Redis connection settings
+  - [/] Configure Spring Cache & Redis connection settings (Configuration properties added, caching not yet enabled or applied)
   - [ ] Apply `@Cacheable` and `@CacheEvict` annotations to CV read/write operations
 
 ---
 
 ## Phase 5: Verification & Tests
 - [ ] Write Unit Tests for Services (using Mockito)
-- [ ] Write Integration Tests for Repositories and Controllers (using Testcontainers PostgreSQL)
+- [/] Write Integration Tests for Repositories and MVC Controllers (using Testcontainers PostgreSQL) (Basic Testcontainers configuration and repository test set up, controller tests pending)
 - [ ] Set up Actuator health checks and customized JSON metrics representation
 
 ---
