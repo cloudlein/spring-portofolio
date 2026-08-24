@@ -12,6 +12,6 @@ public interface UserService {
     void updateUser(Long id, UserUpdateRequest request);
     void deleteUser(Long id);
     UserResponse getById(Long id);
-    Page<UserResponse> getAll(Pageable pageable);
+    Page<UserResponse> getAll(String search, Pageable pageable);
 
 }

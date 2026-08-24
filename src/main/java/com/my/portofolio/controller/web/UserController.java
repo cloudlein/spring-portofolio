@@ -1,4 +1,4 @@
-package com.my.portofolio.controller;
+package com.my.portofolio.controller.web;
 
 import com.my.portofolio.dto.user.UserResponse;
 import com.my.portofolio.dto.user.UserUpdateRequest;

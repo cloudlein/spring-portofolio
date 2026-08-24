@@ -1,4 +1,4 @@
-package com.my.portofolio.controller;
+package com.my.portofolio.controller.api;
 
 import com.my.portofolio.dto.ApiResponse;
 import com.my.portofolio.dto.auth.LoginRequest;

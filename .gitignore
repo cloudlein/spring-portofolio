@@ -40,3 +40,4 @@ out/
 .env
 
 .agents/
+skills-lock.json
