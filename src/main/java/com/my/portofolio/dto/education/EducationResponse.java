@@ -2,6 +2,7 @@ package com.my.portofolio.dto.education;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-class EducationResponse {
+public class EducationResponse {
   private Long id;
   private Long cvProfileId;
   private String institution;
@@ -22,6 +23,7 @@ class EducationResponse {
   private LocalDate endDate;
   private BigDecimal gpa;
   private String description;
-  private LocalDate createdAt;
-  private LocalDate updatedAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 }
+

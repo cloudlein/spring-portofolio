@@ -1,15 +1,18 @@
-package com.my.portofolio.dto.education
+package com.my.portofolio.dto.education;
 
-import jakarta.validation.NotNull;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +24,7 @@ public class EducationUpdateRequest {
   private Long cvProfileId;
 
   @NotBlank(message = "Institution is required")
-  @Size(max = 255, message = instution must not exceed 255 characters")
+  @Size(max = 255, message = "Institution must not exceed 255 characters")
   private String institution;
 
   @NotBlank(message = "Degree is required")
