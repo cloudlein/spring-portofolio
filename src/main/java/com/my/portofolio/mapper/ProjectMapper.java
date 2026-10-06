@@ -11,14 +11,14 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface ProjectMapper {
 
-    @Mapping(target = "cvProfile", ignore = true)
-    Project toEntity(ProjectCreateRequest request);
+  @Mapping(target = "cvProfile", ignore = true)
+  Project toEntity(ProjectCreateRequest request);
 
-    @Mapping(source = "cvProfile.id", target = "cvProfileId")
-    ProjectResponse toResponse(Project project);
+  @Mapping(source = "cvProfile.id", target = "cvProfileId")
+  ProjectResponse toResponse(Project project);
 
-    @Mapping(target = "cvProfile", ignore = true)
-    @Mapping(target = "id", ignore = true)
-    void updateEntity(ProjectUpdateRequest request, @MappingTarget Project project);
+  @Mapping(target = "cvProfile", ignore = true)
+  @Mapping(target = "id", ignore = true)
+  void updateEntity(ProjectUpdateRequest request, @MappingTarget Project project);
 
 }
